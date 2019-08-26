@@ -19,7 +19,7 @@ def to_tt_tensor(tens, max_tt_rank=10, epsilon=None):
     for core_idx in range(d - 1):
         curr_mode = shape[core_idx]
         rows = ranks[core_idx] * curr_mode
-        tens = tens.view(rows, -1)
+        tens = tens.reshape(rows, -1)
         columns = tens.shape[1]
         u, s, v = svd_fix(tens)
         if max_tt_rank[core_idx + 1] == 1:
